@@ -1,0 +1,55 @@
+diff --git a/llava/model/__init__.py b/llava/model/__init__.py
+index 788e43e..b6a186f 100755
+--- a/llava/model/__init__.py
++++ b/llava/model/__init__.py
+@@ -26,5 +26,5 @@ TODO:
+ 3. fp8 infernce example (load directly from a fp8 and fwd)
+ 4. bind fp8 related configs to QLlamaConfig {"coat_fp8_args": {}}
+ """
+-from .language_model.fp8linearqwen2 import FP8LinearQwen2Config, FP8LinearQwen2Model
+-from .language_model.qllava_qllama import QLlavaLlamaConfig, QLlavaLlamaModel
++#from .language_model.fp8linearqwen2 import FP8LinearQwen2Config, FP8LinearQwen2Model
++#from .language_model.qllava_qllama import QLlavaLlamaConfig, QLlavaLlamaModel
+diff --git a/llava/model/multimodal_encoder/builder.py b/llava/model/multimodal_encoder/builder.py
+index 4a68e13..d54ec10 100755
+--- a/llava/model/multimodal_encoder/builder.py
++++ b/llava/model/multimodal_encoder/builder.py
+@@ -22,7 +22,10 @@ from transformers import AutoConfig, PretrainedConfig, PreTrainedModel
+ 
+ from .clip_encoder import CLIPVisionTower, CLIPVisionTowerS2
+ from .intern_encoder import InternVisionTower, InternVisionTowerS2
+-from .ps3_encoder import PS3VisionTower
++try:
++    from .ps3_encoder import PS3VisionTower
++except ModuleNotFoundError:
++    PS3VisionTower = None
+ from .radio_encoder import RADIOVisionTower
+ from .siglip_encoder import SiglipVisionTower, SiglipVisionTowerDynamicS2, SiglipVisionTowerS2
+ 
+diff --git a/llava/utils/media.py b/llava/utils/media.py
+index c889698..e4b3770 100644
+--- a/llava/utils/media.py
++++ b/llava/utils/media.py
+@@ -61,7 +61,7 @@ def _load_video(video_path: str, *, num_frames: int, fps: float) -> List[PIL.Ima
+ 
+     # Extract frames uniformly
+     # If FPS is specified, use that to compute timestamps
+-    if fps > 0:
++    if fps is not None and fps > 0:
+         timestamps = np.arange(0, duration_sec, 1.0 / fps)
+         timestamps = timestamps[:num_frames]  # Clamp
+         indices = [int(t * video_fps) for t in timestamps]
+diff --git a/pyproject.toml b/pyproject.toml
+index 9647d63..e3df37a 100755
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -24,8 +24,7 @@ dependencies = [
+     "datasets==2.16.1", "openai==1.8.0", "webdataset==0.2.86",
+     "nltk==3.3", "pywsd==1.2.4", "opencv-python-headless==4.8.0.76",
+     "s2wrapper@git+https://github.com/bfshi/scaling_on_scales",
+-    "tyro", "pytest", "pre-commit", "loguru", "hydra-core", "xgrammar",
+-    "ps3-torch@git+https://github.com/NVlabs/PS3"
++    "tyro", "pytest", "pre-commit", "loguru", "hydra-core", "xgrammar"
+ ]
+ 
+ [project.scripts]

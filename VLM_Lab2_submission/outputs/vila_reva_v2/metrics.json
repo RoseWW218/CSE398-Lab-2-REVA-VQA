@@ -1,0 +1,22 @@
+{
+  "num_questions": 2,
+  "num_answered": 2,
+  "num_correct": 2,
+  "accuracy": 1.0,
+  "by_category": {
+    "video_qa": {
+      "num_questions": 2,
+      "num_answered": 2,
+      "num_correct": 2,
+      "accuracy": 1.0
+    }
+  },
+  "by_subcategory": {
+    "visual_text_understanding": {
+      "num_questions": 2,
+      "num_answered": 2,
+      "num_correct": 2,
+      "accuracy": 1.0
+    }
+  }
+}

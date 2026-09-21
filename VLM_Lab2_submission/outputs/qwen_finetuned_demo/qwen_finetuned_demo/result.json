@@ -1,0 +1,24 @@
+{
+  "DEMO-TEST-001": {
+    "id": "DEMO-TEST-001",
+    "video_id": "videos/demo_short",
+    "duration": 2.0,
+    "question": "Which road name is displayed on the title card?\nA. Oxford Road\nB. London Road\nC. Worcester Road\nD. Station Road",
+    "answer": "C",
+    "question_type": "visual_text_understanding",
+    "pred": "<answer>C</answer>",
+    "pred_letter": "C",
+    "acc": 1
+  },
+  "DEMO-TEST-002": {
+    "id": "DEMO-TEST-002",
+    "video_id": "videos/demo_short",
+    "duration": 2.0,
+    "question": "Which full service description appears below the main title?\nA. Premier Hand Car Wash\nB. Express Laundry Service\nC. Automatic Fuel Station\nD. Budget Bicycle Repair",
+    "answer": "A",
+    "question_type": "visual_text_understanding",
+    "pred": "<answer>A</answer>",
+    "pred_letter": "A",
+    "acc": 1
+  }
+}

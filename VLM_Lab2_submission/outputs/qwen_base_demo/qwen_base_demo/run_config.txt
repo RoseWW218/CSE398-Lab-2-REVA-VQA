@@ -1,0 +1,8 @@
+MODEL_PATH=Qwen/Qwen3-VL-4B-Instruct
+MODEL_BASE=
+REVA_ROOT=/home/ruw425/cse498_lab2/VLM_evaluating_finetuing/data/reva_test
+REVA_JSON=/home/ruw425/cse498_lab2/VLM_evaluating_finetuing/data/reva_test/test_set.json
+NUM_CHUNKS=1
+MAX_FRAMES=4
+MAX_PIXELS=50176
+BACKEND=transformers
